@@ -18,6 +18,8 @@ export class HomePage {
 
   onStart() {
     // Aquí puedes navegar a otra página, por ejemplo, a la página de escaneo de asistencia
-    this.navCtrl.navigateForward('/attendance-scan'); // Cambia '/attendance-scan' al path correspondiente
+    this.navCtrl.navigateForward('/acceso'); // Cambia '/attendance-scan' al path correspondiente
   }
+
+
 }

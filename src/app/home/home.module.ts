@@ -6,6 +6,10 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
+/*
+desde el video en el min 20:50 comienzo a poner esto pero no se si estara bien, las importacines de login component
+
+*/
 
 @NgModule({
   imports: [
@@ -13,6 +17,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule
+
   ],
   declarations: [HomePage]
 })
