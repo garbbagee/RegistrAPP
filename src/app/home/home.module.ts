@@ -3,13 +3,9 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-
+import { LoginComponent } from '../components/login/login.component';
 import { HomePageRoutingModule } from './home-routing.module';
 
-/*
-desde el video en el min 20:50 comienzo a poner esto pero no se si estara bien, las importacines de login component
-
-*/
 
 @NgModule({
   imports: [
@@ -17,8 +13,7 @@ desde el video en el min 20:50 comienzo a poner esto pero no se si estara bien, 
     FormsModule,
     IonicModule,
     HomePageRoutingModule
-
   ],
-  declarations: [HomePage]
+  declarations: [HomePage,LoginComponent]
 })
 export class HomePageModule {}

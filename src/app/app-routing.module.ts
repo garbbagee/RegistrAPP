@@ -10,13 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
-    path: 'acceso',
-    loadChildren: () => import('./acceso/acceso.module').then( m => m.AccesoPageModule)
   },
-
-
-
+  {
+    path: 'inicio',
+    loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+  },
 ];
 
 @NgModule({
