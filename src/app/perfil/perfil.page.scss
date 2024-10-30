@@ -1,0 +1,45 @@
+.perfil-container {
+    width: 80%; /* Ancho del contenedor del perfil */
+    display: flex; /* Para organizar el contenido en fila */
+    flex-direction: column; /* Colocar los elementos en columna */
+    align-items: center; /* Centrar horizontalmente */
+    margin: 20px auto; /* Margen superior e inferior */
+  }
+  
+  .foto-perfil {
+    width: 100px; /* Ancho de la imagen */
+    height: 100px; /* Alto de la imagen */
+    border-radius: 50%; /* Para hacer la imagen circular */
+    overflow: hidden; /* Para recortar la imagen en el borde */
+    margin-bottom: 20px; /* Espacio debajo de la imagen */
+    display: flex; /* Flexbox para centrar la imagen */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+  }
+  
+  .foto-perfil img {
+    width: 100%; /* Ancho completo del contenedor */
+    height: auto; /* Mantener proporciones de la imagen */
+  }
+  
+  .usuario-info {
+    text-align: center; /* Centrar el texto */
+    color: white; /* Color del texto */
+  }
+  
+  .usuario-email {
+    font-size: 20px; /* Tamaño de la fuente del correo */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 10px; /* Espacio debajo del correo */
+  }
+  
+  .btn-editar {
+    background-color: #ffcc00; /* Color del botón */
+    color: black; /* Color del texto del botón */
+  }
+  
+  .btn-logout {
+    margin-top: 30px; /* Margen superior para el botón de cerrar sesión */
+  }
+  

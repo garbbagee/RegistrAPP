@@ -1,17 +1,17 @@
 <form (ngSubmit)="login()">
-
+<br><br><br><br><br><br><br><br><br><br><br><br>
   <ion-item>
     <ion-label position="floating">Correo Electrónico</ion-label>
-    <ion-input type="email" name="email" placeholder="email" [(ngModel)]="email"></ion-input>
+    <ion-input type="email" name="email" placeholder="" [(ngModel)]="email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Contraseña</ion-label>
-    <ion-input type="password" name="password" placeholder="password" [(ngModel)]="password"></ion-input>
+    <ion-input type="password" name="password" placeholder="" [(ngModel)]="password"></ion-input>
   </ion-item>
   <br>
-  <ion-button type="submit" expand="full" color="success">Loguearse</ion-button>
+  <ion-button type="submit" expand="full">Iniciar Sesión</ion-button>
 </form>
-<br><br>
+<br>
 
-<ion-button (click)="register()" expand="full" color="success">Registrar</ion-button>
+<ion-button (click)="register()" expand="full">Registrar Usuario</ion-button>

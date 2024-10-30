@@ -31,4 +31,9 @@ export class LoginComponent  implements OnInit {
       alert("Error al intentar registrarse!"+error)
     }
   }
+
+
+  
 }
+
+

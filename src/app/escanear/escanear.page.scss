@@ -1,0 +1,47 @@
+.qr-container {
+    width: 80%; /* Ancho del contenedor del QR */
+    height: 300px; /* Altura del contenedor */
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+    border: 2px dashed white; /* Borde punteado para el área de escaneo */
+    border-radius: 10px; /* Bordes redondeados */
+    display: flex; /* Para centrar el texto dentro */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    animation: bounce 1s infinite; /* Animación de rebote */
+    margin: 0 auto; /* Centrar el contenedor */
+  }
+  
+  .qr-text {
+    color: white; /* Color del texto */
+    font-size: 18px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    text-align: center; /* Centrar el texto */
+  }
+  
+  /* Animación de rebote */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0); /* Posición original */
+    }
+    50% {
+      transform: translateY(-10px); /* Subir un poco */
+    }
+  }
+  
+  .boton-escaneo {
+    width: 80%; /* Ajustar el ancho del botón */
+    animation: pump 0.6s infinite; /* Cambia a una animación de bombeo */
+    margin: 20px auto; /* Margen superior e inferior, centrar horizontalmente */
+    display: block; /* Hacer que el botón se comporte como un bloque para centrarlo */
+  }
+  
+  /* Animación de bombeo */
+  @keyframes pump {
+    0%, 100% {
+      transform: scale(1); /* Tamaño original */
+    }
+    50% {
+      transform: scale(1.05); /* Aumentar ligeramente */
+    }
+  }
+  

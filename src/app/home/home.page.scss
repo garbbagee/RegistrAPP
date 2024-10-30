@@ -25,3 +25,49 @@
 #container a {
   text-decoration: none;
 }
+
+ion-content {
+  --background: #001f3f; /* Fondo azul marino */
+  color: white; /* Texto en blanco */
+}
+
+
+/* Animación para deslizar desde la izquierda */
+.animate-title {
+  display: inline-block; /* Necesario para la animación */
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+.animate-title:nth-child(2) {
+  animation-delay: 0.2s; /* Retraso para "APP" */
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+
+/*ANIMACIONES DE BOTONES*/
+
+/* Animación de entrada */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Definición de keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

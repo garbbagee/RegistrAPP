@@ -15,6 +15,18 @@ const routes: Routes = [
     path: 'inicio',
     loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
   },
+  {
+    path: 'escanear',
+    loadChildren: () => import('./escanear/escanear.module').then( m => m.EscanearPageModule)
+  },
+  {
+    path: 'consumoapi',
+    loadChildren: () => import('./consumoapi/consumoapi.module').then( m => m.ConsumoapiPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
 ];
 
 @NgModule({

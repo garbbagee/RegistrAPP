@@ -1,13 +1,25 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" style="background-color: #001f3f;">
   <ion-toolbar>
-    <ion-title>inicio</ion-title>
+    <ion-title>
+      <span style="color: white; font-size: 18px;">Sesión de </span>
+      <span style="color: gold; font-weight: bold; font-size: 24px;">{{ userEmail }}</span>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">inicio</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content style="background-color: #001f3f; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; padding: 20px;">
+  <br><br><br><br><br><br><br><br>
+
+  <div class="texto-registr"> 
+    <span class="animar-registr" style="font-size: 44px;">Registr</span>
+    <span class="animar-app" style="font-size: 56px;">APP</span>
+  </div>
+  
+  <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+    <br><br><br><br>
+    <ion-button class="bombeo" style="width: 80%;" (click)="scanQRCode()">Escanear QR</ion-button>
+    <ion-button class="bombeo" style="width: 80%;" (click)="listStudents()">Lista de Alumnos</ion-button>
+    <ion-button class="bombeo" style="width: 80%;" (click)="myInfo()">Mi Información</ion-button>
+    <ion-button class="bombeo" style="width: 80%;" (click)="logout()">Cerrar Sesión</ion-button>
+  </div>
 </ion-content>

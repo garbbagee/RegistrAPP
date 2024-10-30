@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/compat/auth';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +18,9 @@ export class AuthService {
   async logout (){
     this.afAuth.signOut();
   }
-  async getUser(){
-    return this.afAuth.user;
+  async getUser(): Promise<Observable<any>> {
+    return this.afAuth.authState; // Devuelve el estado de autenticación
   }
+
+  
 }
