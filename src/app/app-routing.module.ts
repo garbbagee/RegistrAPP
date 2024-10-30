@@ -20,8 +20,8 @@ const routes: Routes = [
     loadChildren: () => import('./escanear/escanear.module').then( m => m.EscanearPageModule)
   },
   {
-    path: 'consumoapi',
-    loadChildren: () => import('./consumoapi/consumoapi.module').then( m => m.ConsumoapiPageModule)
+    path: 'consumoapi', // Asegúrate de que la ruta sea correcta
+    loadChildren: () => import('./consumoapi/consumoapi.module').then(m => m.ConsumoApiPageModule) // Asegúrate de que estás importando "ConsumoApiPageModule"
   },
   {
     path: 'perfil',

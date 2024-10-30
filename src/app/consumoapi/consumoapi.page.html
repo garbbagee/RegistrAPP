@@ -1,13 +1,16 @@
-<ion-header [translucent]="true">
+<!-- src/app/consumo-api/consumo-api.page.html -->
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>consumoapi</ion-title>
+    <ion-title>Personajes de Rick and Morty</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">consumoapi</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card *ngFor="let character of characters">
+    <img [src]="character.image" alt="{{ character.name }}" />
+    <ion-card-header>
+      <ion-card-title>{{ character.name }}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
