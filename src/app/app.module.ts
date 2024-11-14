@@ -1,5 +1,3 @@
-// src/app/app.module.ts
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -15,8 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { HttpClientModule } from '@angular/common/http';
 
-// Importa el módulo de la página de consumo de API
-import { ConsumoApiPageModule } from './consumoapi/consumoapi.module'; // Importa el módulo
+import { ConsumoApiPageModule } from './consumoapi/consumoapi.module'; 
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +26,7 @@ import { ConsumoApiPageModule } from './consumoapi/consumoapi.module'; // Import
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     HttpClientModule,
-    ConsumoApiPageModule // Importa el módulo aquí
+    ConsumoApiPageModule 
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
