@@ -28,12 +28,10 @@ export class InicioAlumnoPage {
     });
   }
 
-  viewGrades() {
-    this.router.navigate(['/calificaciones']); // Navega a la página de calificaciones
-  }
-
-  viewSchedule() {
-    this.router.navigate(['/horario']); // Navega a la página de horario
+  generateQR() {
+    // Aquí puedes agregar la lógica para generar el QR
+    // Redirige a la página de generación de QR (si ya la tienes) o implementa la lógica
+    this.router.navigate(['/generate-qr']); // Redirige a la página para generar el QR
   }
 
   myInfo() {
