@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -10,7 +11,7 @@ import { AlertController } from '@ionic/angular';
 export class RecoverpassPage {
   email: string = '';
 
-  constructor(private afAuth: AngularFireAuth, private alertCtrl: AlertController) {}
+  constructor(private afAuth: AngularFireAuth, private router: Router, private alertCtrl: AlertController) {}
 
   async onRecoverPassword() {
     try {
@@ -29,5 +30,10 @@ export class RecoverpassPage {
       });
       await alert.present();
     }
+  }
+
+  // Función para redirigir al login
+  goBackToLogin() {
+    this.router.navigate(['/home']); // Redirige al inicio de sesión
   }
 }

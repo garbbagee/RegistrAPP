@@ -11,11 +11,32 @@
     </ion-card-header>
     <ion-card-content>
       <form (ngSubmit)="onRecoverPassword()">
-        <ion-item>
-          <ion-label position="floating">Correo electrónico</ion-label>
-          <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
-        </ion-item>
-        <ion-button expand="full" type="submit" [disabled]="!email">Enviar Correo de Recuperación</ion-button>
+        <!-- Instrucciones entre el título y el campo de correo -->
+        <div style="margin-top: 20px;">
+          <p style="font-size: 14px; color: #555;">
+            Para recuperar tu contraseña, por favor ingresa el correo electrónico asociado a tu cuenta. 
+            Si el correo que proporcionas es válido, recibirás un mensaje con instrucciones detalladas para restablecer tu contraseña. 
+            Revisa tu bandeja de entrada y, si no lo encuentras, verifica en la carpeta de spam o correos no deseados.
+          </p>
+        </div>
+
+        <!-- Campo de correo electrónico -->
+        <div style="margin-top: 20px;">
+          <ion-item>
+            <ion-label position="floating">Correo electrónico</ion-label>
+            <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+          </ion-item>
+        </div>
+
+        <!-- Espaciado entre los elementos -->
+        <div style="margin-top: 20px;">
+          <ion-button expand="full" type="submit" [disabled]="!email">Enviar Correo de Recuperación</ion-button>
+        </div>
+
+        <!-- Botón para volver a iniciar sesión -->
+        <div style="margin-top: 20px;">
+          <ion-button expand="full" (click)="goBackToLogin()">Volver a Iniciar Sesión</ion-button>
+        </div>
       </form>
     </ion-card-content>
   </ion-card>

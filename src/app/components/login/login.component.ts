@@ -34,4 +34,9 @@ export class LoginComponent implements OnInit {
       alert("Error al intentar registrarse!" + error);
     }
   }
+
+  // Redirigir al usuario a la página de recuperación de contraseña
+  goToRecoverPass() {
+    this.router.navigate(['/recoverpass']);
+  }
 }

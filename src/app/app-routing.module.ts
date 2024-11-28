@@ -30,6 +30,10 @@ const routes: Routes = [
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {
+    path: 'recoverpass',
+    loadChildren: () => import('./recoverpass/recoverpass.module').then( m => m.RecoverpassPageModule)
+  },
+  {
     path: 'inicio-alumno',
     loadChildren: () => import('./inicio-alumno/inicio-alumno.module').then( m => m.InicioAlumnoPageModule),
     canActivate:[authGuard]
