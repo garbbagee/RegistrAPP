@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recuperar Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Recuperar Contraseña</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="onRecoverPassword()">
+        <ion-item>
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+        <ion-button expand="full" type="submit" [disabled]="!email">Enviar Correo de Recuperación</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

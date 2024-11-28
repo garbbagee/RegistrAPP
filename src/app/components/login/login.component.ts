@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   async register() {
     try {
-      await this.authService.register(this.email, this.password, this.role); // Llamada con tres parámetros
+      await this.authService.register(this.email, this.password, this.role);
       alert("Registrado exitosamente! " + this.email);
     } catch (error) {
       alert("Error al intentar registrarse!" + error);
