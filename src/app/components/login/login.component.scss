@@ -14,3 +14,29 @@
       opacity: 1;
     }
   }
+
+  ion-button {
+    width: 80%; /* Ancho del 80% para todos los botones */
+    margin: 20px auto; /* Margen superior y centrado */
+    animation: pump 0.6s ease-in-out; /* Aplica la animación de bombeo */
+  }
+
+  form {
+    width: 90%; /* 80% del ancho */
+    margin: 0 auto; /* Centrar el formulario */
+  }
+
+  @keyframes pump {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05); /* Aumenta el tamaño al 105% */
+    }
+  }
+  
+  ion-button {
+    width: 80%; /* Ancho del 80% para todos los botones */
+    margin: 20px auto; /* Margen superior y centrado */
+    animation: pump 0.6s ease-in-out; /* Aplica la animación de bombeo */
+  }

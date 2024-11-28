@@ -1,0 +1,25 @@
+<ion-header [translucent]="true" style="background-color: #001f3f;">
+  <ion-toolbar>
+    <ion-title>
+      <span style="color: white; font-size: 18px;">Sesión de </span>
+      <span style="color: gold; font-weight: bold; font-size: 24px;">{{ userEmail }}</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="background-color: #001f3f; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; padding: 20px;">
+  <br><br><br><br><br><br><br><br>
+
+  <div class="texto-registr">
+    <span class="animar-registr" style="font-size: 44px;">Registr</span>
+    <span class="animar-app" style="font-size: 56px;">APP</span>
+  </div>
+  
+  <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+    <br><br><br><br>
+    <ion-button class="bombeo" style="width: 80%;" (click)="viewGrades()">Ver Calificaciones</ion-button>
+    <ion-button class="bombeo" style="width: 80%;" (click)="viewSchedule()">Ver Horario</ion-button>
+    <ion-button class="bombeo" style="width: 80%;" (click)="myInfo()">Mi Información</ion-button>
+    <ion-button class="bombeo" style="width: 80%;" (click)="logout()">Cerrar Sesión</ion-button>
+  </div>
+</ion-content>

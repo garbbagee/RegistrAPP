@@ -1,0 +1,123 @@
+.pumping {
+    animation: pump 0.5s infinite alternate;
+  }
+  
+  @keyframes pump {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+  
+  ion-title {
+    text-align: center; /* Centra el texto dentro del título */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    overflow: hidden; /* Evita que el contenido se desborde */
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
+  }
+  
+  
+  ion-content {
+    background-color: #001f3f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Para centrar hacia abajo */
+    height: 100%;
+    padding: 20px;
+  }
+  
+  .texto-registr {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .texto-registr span:nth-child(1) {
+    color: white;
+    font-size: 24px;
+  }
+  
+  .texto-registr span:nth-child(2) {
+    color: gold;
+    font-weight: bold;
+    font-size: 28px;
+  }
+  
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  
+  
+  .texto-registr {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    margin-bottom: 28px;
+    width: 100%; /* Ocupará el 100% del ancho disponible */
+  }
+  
+  .texto-registr {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    margin-bottom: 28px; /* Margen inferior */
+  }
+  
+  .animar-registr {
+    color: white; /* Color de "Registr" */
+    font-size: 30px; /* Ajusta el tamaño según sea necesario */
+    animation: slideInLeft 0.5s forwards; /* Animación para "Registr" */
+    margin-right: 5px; /* Espacio entre "Registr" y "APP" */
+  }
+  
+  .animar-app {
+    color: gold; /* Color de "APP" */
+    font-weight: bold; /* Negrita para "APP" */
+    font-size: 34px; /* Ajusta el tamaño según sea necesario */
+    animation: slideInRight 0.5s forwards; /* Animación para "APP" */
+  }
+  
+  .bombeo {
+    animation: bombear 1s infinite alternate;
+  }
+  
+  @keyframes bombear {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.10); /* Aumenta el tamaño ligeramente */
+    }
+  }
+  
+  
+  ion-button {
+    width: 80%; /* Cambia el ancho según tu preferencia */
+    margin: 10px 0; /* Espacio entre los botones */
+    display: flex; /* Para centrar el contenido dentro del botón */
+    justify-content: center; /* Centrar el texto dentro del botón */
+  }
+  

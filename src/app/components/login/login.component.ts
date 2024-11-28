@@ -7,33 +7,31 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent  implements OnInit {
-  email:string = "";
-  password:string = "";
-  constructor(private authService:AuthService,private router:Router) { }
+export class LoginComponent implements OnInit {
+  email: string = "";
+  password: string = "";
+  role: string = "alumno"; // Valor por defecto
 
-  ngOnInit() {}
-  async login(){
+  constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnInit() { }
+
+  async login() {
     try {
-      await this.authService.login(this.email,this.password);
+      await this.authService.login(this.email, this.password);
       alert("Logueado exitosamente!");
-      this.router.navigate(["/inicio"])
+      this.router.navigate(["/inicio"]);
     } catch (error) {
-      alert("Error al intentar loguearse!"+error)
+      alert("Error al intentar loguearse!" + error);
     }
   }
 
-  async register(){
+  async register() {
     try {
-      await this.authService.register(this.email,this.password);
-      alert("Registrado exitosamente!"+this.email);
+      await this.authService.register(this.email, this.password, this.role); // Llamada con tres parámetros
+      alert("Registrado exitosamente! " + this.email);
     } catch (error) {
-      alert("Error al intentar registrarse!"+error)
+      alert("Error al intentar registrarse!" + error);
     }
   }
-
-
-  
 }
-
-
