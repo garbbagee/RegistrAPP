@@ -1,33 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'; // Para recibir parámetros
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-asistencia',
   templateUrl: './asistencia.page.html',
   styleUrls: ['./asistencia.page.scss'],
 })
-export class AsistenciaPage implements OnInit {
-  totalClasses: number = 30; // Total de clases (ajustable según el curso)
-  attendedClasses: number = 0; // Inicialmente 0 clases asistidas
-  attendancePercentage: number = 0; // Inicialmente 0%
+export class AsistenciaPage {
+  totalClasses: number = 20; // Total de clases (puedes modificarlo según sea necesario)
+  attendedClasses: number = 0;
+  attendancePercentage: number = 0;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-    // Revisamos si el parámetro "increment" está presente en la URL
-    this.activatedRoute.queryParams.subscribe(params => {
-      if (params['increment']) {
-        this.incrementAttendance();
-      }
-    });
+  // Cargar asistencia cada vez que se entra a la página
+  ionViewWillEnter() {
+    this.loadAttendance();
   }
 
-  incrementAttendance() {
-    this.attendedClasses += 1;
-    this.updateAttendancePercentage();
+  // Función para cargar la asistencia desde localStorage
+  loadAttendance() {
+    const attended = parseInt(localStorage.getItem('attendedClasses') || '0', 10);
+    this.attendedClasses = attended;
+    this.attendancePercentage = Math.round((this.attendedClasses / this.totalClasses) * 100);
   }
 
-  updateAttendancePercentage() {
-    this.attendancePercentage = (this.attendedClasses / this.totalClasses) * 100;
+  // Redirigir a la página de inicio de alumno
+  goToInicioAlumno() {
+    this.router.navigate(['/inicio-alumno']);
   }
 }

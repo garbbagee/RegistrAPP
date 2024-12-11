@@ -76,8 +76,11 @@ export class EscanearPage implements OnInit, OnDestroy {
 
   // Registrar la asistencia
   registerAttendance() {
-    // Aquí se actualiza el número de clases asistidas y el porcentaje en la página de asistencia.
-    // Redirige a la página de asistencia para mostrar la actualización
+    // Actualiza la asistencia en localStorage y redirige a la página de asistencia
+    const currentAttendance = parseInt(localStorage.getItem('attendedClasses') || '0', 10);
+    localStorage.setItem('attendedClasses', (currentAttendance + 1).toString());
+
+    // Redirigir a la página de asistencia con parámetro
     this.router.navigate(['/asistencia'], {
       queryParams: { increment: true }
     });
