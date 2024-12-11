@@ -38,7 +38,15 @@ const routes: Routes = [
     loadChildren: () => import('./inicio-alumno/inicio-alumno.module').then( m => m.InicioAlumnoPageModule),
     canActivate:[authGuard]
 
+  },  {
+    path: 'asistencia',
+    loadChildren: () => import('./asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
   },
+  {
+    path: 'generate-qr',
+    loadChildren: () => import('./generate-qr/generate-qr.module').then( m => m.GenerateQrPageModule)
+  },
+
 
 ];
 

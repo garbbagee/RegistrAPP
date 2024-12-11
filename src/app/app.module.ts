@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { HttpClientModule } from '@angular/common/http';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 import { ConsumoApiPageModule } from './consumoapi/consumoapi.module'; 
 
@@ -26,7 +27,7 @@ import { ConsumoApiPageModule } from './consumoapi/consumoapi.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     HttpClientModule,
-    ConsumoApiPageModule 
+    ConsumoApiPageModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

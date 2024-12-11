@@ -1,57 +1,75 @@
-import { Component, OnInit } from '@angular/core';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import jsQR from 'jsqr';  // Importar jsQR para leer códigos QR
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import jsQR from 'jsqr';
 
 @Component({
   selector: 'app-escanear',
   templateUrl: './escanear.page.html',
   styleUrls: ['./escanear.page.scss'],
 })
-export class EscanearPage implements OnInit {
+export class EscanearPage implements OnInit, OnDestroy {
+  scannedData: string = '';
+  videoElement!: HTMLVideoElement;
+  canvasElement!: HTMLCanvasElement;
+  canvasContext!: CanvasRenderingContext2D;
+  scanInterval: any;
 
-  scannedData: string = ''; // Almacenamos los datos del QR escaneado
+  ngOnInit() {
+    this.startCamera();
+  }
 
-  constructor() { }
+  ngOnDestroy() {
+    this.stopCamera();
+  }
 
-  ngOnInit() {}
+  async startCamera() {
+    try {
+      // Accedemos a la cámara
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      this.videoElement = document.querySelector('#video') as HTMLVideoElement;
+      this.videoElement.srcObject = stream;
 
-  // Método para capturar la imagen con la cámara
-  async scanQRCode() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      source: CameraSource.Camera,
-      resultType: CameraResultType.Uri,
-    });
+      // Crear un canvas invisible para capturar frames
+      this.canvasElement = document.createElement('canvas');
+      this.canvasContext = this.canvasElement.getContext('2d')!;
 
-    // Verificamos si image.webPath está definido
-    const imageUrl = image.webPath ? image.webPath : '';  // Asignamos un valor vacío si es undefined
-    
-    if (imageUrl) {
-      // Convierte la imagen a base64 y procesa con jsQR
-      const img = new Image();
-      img.src = imageUrl;
-
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.height = img.height;
-        canvas.width = img.width;
-        ctx?.drawImage(img, 0, 0);
-        
-        const imageData = ctx?.getImageData(0, 0, canvas.width, canvas.height);
-        if (imageData) {
-          const qrCode = jsQR(imageData.data, canvas.width, canvas.height);
-          if (qrCode) {
-            this.scannedData = qrCode.data;  // Almacena los datos del QR
-            console.log("QR Escaneado:", this.scannedData);
-          } else {
-            console.log("No se pudo leer el código QR.");
-          }
-        }
-      };
-    } else {
-      console.log("Error: No se pudo obtener la ruta de la imagen.");
+      // Iniciar el escaneo en tiempo real
+      this.scanInterval = setInterval(() => this.scanQRCode(), 500);
+    } catch (error) {
+      console.error('Error al iniciar la cámara:', error);
     }
   }
 
+  stopCamera() {
+    // Detener el flujo de video si el usuario desea parar el escaneo
+    const stream = this.videoElement?.srcObject as MediaStream;
+    stream?.getTracks().forEach(track => track.stop());
+    clearInterval(this.scanInterval);
+  }
+
+  scanQRCode() {
+    if (this.videoElement.readyState === this.videoElement.HAVE_ENOUGH_DATA) {
+      // Configurar el tamaño del canvas según el video
+      this.canvasElement.width = this.videoElement.videoWidth;
+      this.canvasElement.height = this.videoElement.videoHeight;
+
+      // Dibujar el frame actual en el canvas
+      this.canvasContext.drawImage(this.videoElement, 0, 0, this.canvasElement.width, this.canvasElement.height);
+
+      // Obtener datos del canvas
+      const imageData = this.canvasContext.getImageData(0, 0, this.canvasElement.width, this.canvasElement.height);
+
+      // Intentar leer un código QR
+      const qrCode = jsQR(imageData.data, imageData.width, imageData.height);
+      if (qrCode) {
+        this.scannedData = qrCode.data;
+        console.log('Código QR detectado:', this.scannedData);
+        // No detener la cámara automáticamente, dejamos que el usuario decida cuando parar
+      }
+    }
+  }
+
+  // Función para redirigir al usuario si se detecta un enlace en el QR
+  openLink(link: string) {
+    window.open(link, '_system');
+  }
 }

@@ -28,10 +28,10 @@ export class InicioPage {
     });
   }
 
-  scanQRCode() {
-    this.router.navigate(['/escanear']); // Navega a la página Escanear
+  generateQR() {
+    this.router.navigate(['/generate-qr']); // Redirige a la página para generar el QR
   }
-
+  
   listStudents() {
     this.router.navigate(['/consumoapi']); // Navega a la lista de alumnos
   }

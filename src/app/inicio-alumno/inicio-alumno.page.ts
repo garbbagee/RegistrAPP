@@ -28,10 +28,8 @@ export class InicioAlumnoPage {
     });
   }
 
-  generateQR() {
-    // Aquí puedes agregar la lógica para generar el QR
-    // Redirige a la página de generación de QR (si ya la tienes) o implementa la lógica
-    this.router.navigate(['/generate-qr']); // Redirige a la página para generar el QR
+  scanQRCode() {
+    this.router.navigate(['/escanear']); // Redirige a la página de escaneo del QR
   }
 
   myInfo() {
