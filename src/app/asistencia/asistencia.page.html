@@ -1,24 +1,30 @@
-<ion-header [translucent]="true" style="background-color: #001f3f;">
+<ion-header>
   <ion-toolbar>
     <ion-title>Asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="background-color: #001f3f; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 20px;">
-  <ion-card style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-    <ion-card-header>
-      <ion-card-title>Registro de Asistencia</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-button (click)="registerAttendance()" expand="full" style="margin-top: 20px;">Registrar Asistencia</ion-button>
-      <div *ngIf="attendanceStatus !== null">
-        <ion-text color="success" *ngIf="attendanceStatus">
-          <h2>Asistencia registrada con éxito</h2>
-        </ion-text>
-        <ion-text color="danger" *ngIf="!attendanceStatus">
-          <h2>Error al registrar la asistencia</h2>
-        </ion-text>
-      </div>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+  <br><br><br><br><br><br><br><br><br><br>
+  <!-- Tabla de Asistencia -->
+  <ion-list>
+    <br>
+    <ion-item>
+      <ion-label>Clases Totales</ion-label>
+      <ion-badge color="primary">{{ totalClasses }}</ion-badge>
+    </ion-item>
+    <br><br>
+    <ion-item>
+      <ion-label>Clases Asistidas</ion-label>
+      <ion-badge color="secondary">{{ attendedClasses }}</ion-badge>
+    </ion-item>
+    <br><br>
+    <ion-item>
+      <ion-label>Porcentaje Asistencia</ion-label>
+      <ion-badge color="tertiary">{{ attendancePercentage }}%</ion-badge>
+    </ion-item>
+    <br>
+  </ion-list>
+
+  <!-- Más contenido de la página de asistencia -->
 </ion-content>

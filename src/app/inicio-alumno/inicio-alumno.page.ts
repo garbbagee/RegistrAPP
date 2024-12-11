@@ -36,6 +36,11 @@ export class InicioAlumnoPage {
     this.router.navigate(['/perfil']); // Navega a la página de perfil
   }
 
+  // Función para redirigir al alumno a la página de asistencia
+  goToAsistencia() {
+    this.router.navigate(['/asistencia']); // Redirige a la página de asistencia
+  }
+
   async logout() {
     await this.authService.logout(); // Cierra sesión
     this.router.navigate(['/home']); // Redirige a la página de inicio

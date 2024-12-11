@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import jsQR from 'jsqr';
+import { Router } from '@angular/router'; // Para redirigir a la página de asistencia
 
 @Component({
   selector: 'app-escanear',
@@ -12,6 +13,8 @@ export class EscanearPage implements OnInit, OnDestroy {
   canvasElement!: HTMLCanvasElement;
   canvasContext!: CanvasRenderingContext2D;
   scanInterval: any;
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.startCamera();
@@ -63,13 +66,20 @@ export class EscanearPage implements OnInit, OnDestroy {
       if (qrCode) {
         this.scannedData = qrCode.data;
         console.log('Código QR detectado:', this.scannedData);
-        // No detener la cámara automáticamente, dejamos que el usuario decida cuando parar
       }
     }
   }
 
-  // Función para redirigir al usuario si se detecta un enlace en el QR
   openLink(link: string) {
     window.open(link, '_system');
+  }
+
+  // Registrar la asistencia
+  registerAttendance() {
+    // Aquí se actualiza el número de clases asistidas y el porcentaje en la página de asistencia.
+    // Redirige a la página de asistencia para mostrar la actualización
+    this.router.navigate(['/asistencia'], {
+      queryParams: { increment: true }
+    });
   }
 }

@@ -7,7 +7,6 @@
   <!-- Mostrar el QR detectado -->
   <div *ngIf="scannedData" class="qr-container">
     <p class="qr-text">Código QR detectado: {{ scannedData }}</p>
-    <!-- Opcional: Enlace para redirigir -->
     <ion-button (click)="openLink(scannedData)" color="primary">Ir al enlace</ion-button>
   </div>
 
@@ -19,5 +18,10 @@
   <!-- Botón para iniciar el escaneo si no se ha escaneado ningún código -->
   <ion-button *ngIf="!scannedData" (click)="startCamera()" color="primary" expand="full">
     Iniciar Escaneo
+  </ion-button>
+
+  <!-- Botón para registrar asistencia después de escanear el QR -->
+  <ion-button *ngIf="scannedData" (click)="registerAttendance()" color="success" expand="full">
+    Registrar Asistencia
   </ion-button>
 </ion-content>
