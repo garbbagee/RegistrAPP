@@ -3,7 +3,7 @@
     <ion-title>Generar QR</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<br><br><br><br><br><br><br><br>
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -14,6 +14,6 @@
   <div *ngIf="qrData" style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
     <img [src]="qrData" alt="Código QR generado" />
   </div>
-
+<br><br><br><br><br><br><br><br><br>
   <ion-button expand="full" color="primary" (click)="generateQRCode()">Generar QR</ion-button>
 </ion-content>
