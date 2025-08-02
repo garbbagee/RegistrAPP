@@ -1,19 +1,196 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Generar QR</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-icon name="qr-code-outline" style="margin-right: 8px;"></ion-icon>
+      Generar Código QR
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-<br><br><br><br><br><br><br><br>
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Generar Código QR</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div *ngIf="qrData" style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-    <img [src]="qrData" alt="Código QR generado" />
-  </div>
-<br><br><br><br><br><br><br><br><br>
-  <ion-button expand="full" color="primary" (click)="generateQRCode()">Generar QR</ion-button>
+<ion-content class="ion-padding">
+  
+  <ion-card class="qr-card">
+    <ion-card-header>
+      <ion-card-title class="card-title">
+        <ion-icon name="qr-code-outline" class="title-icon"></ion-icon>
+        Generador de Código QR para Asistencia
+      </ion-card-title>
+      <ion-card-subtitle class="card-subtitle">
+        Selecciona la clase y asignatura para generar el código QR
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      
+      <!-- Selección de Clase -->
+      <ion-item class="form-item">
+        <ion-label position="floating">
+          <ion-icon name="school-outline"></ion-icon>
+          Clase
+        </ion-label>
+        <ion-select [(ngModel)]="selectedClass" interface="popover" placeholder="Selecciona una clase">
+          <ion-select-option *ngFor="let class of classes" [value]="class.id">
+            {{ class.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Selección de Asignatura -->
+      <ion-item class="form-item" *ngIf="selectedClass">
+        <ion-label position="floating">
+          <ion-icon name="book-outline"></ion-icon>
+          Asignatura
+        </ion-label>
+        <ion-select [(ngModel)]="selectedSubject" interface="popover" placeholder="Selecciona una asignatura">
+          <ion-select-option *ngFor="let subject of getSubjectsForClass()" [value]="subject">
+            {{ subject }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Información de la clase seleccionada -->
+      <ion-card *ngIf="getSelectedClassInfo()" class="info-card">
+        <ion-card-content>
+          <h3>{{ getSelectedClassInfo()?.name }}</h3>
+          <p><strong>Asignatura:</strong> {{ selectedSubject }}</p>
+          <p><strong>Profesor:</strong> {{ currentUser?.email }}</p>
+          <p><strong>Fecha:</strong> {{ currentDate }}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Botón para generar QR -->
+      <ion-button 
+        (click)="generateQRCode()" 
+        expand="full" 
+        class="generate-button"
+        [disabled]="isLoading || !selectedClass || !selectedSubject">
+        <ion-icon name="qr-code-outline" slot="start"></ion-icon>
+        {{ isLoading ? 'Generando...' : 'Generar Código QR' }}
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- QR Generado -->
+  <ion-card *ngIf="qrCodeUrl" class="qr-display-card">
+    <ion-card-header>
+      <ion-card-title class="card-title">
+        <ion-icon name="checkmark-circle-outline" class="success-icon"></ion-icon>
+        Código QR Generado
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="qr-container">
+        <img [src]="qrCodeUrl" alt="QR Code" class="qr-image">
+      </div>
+
+      <div class="qr-info">
+        <ion-item class="info-item">
+          <ion-label>
+            <h3>ID de Sesión</h3>
+            <p>{{ sessionId }}</p>
+          </ion-label>
+          <ion-button slot="end" fill="clear" (click)="copyToClipboard()">
+            <ion-icon name="copy-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <ion-item class="info-item">
+          <ion-label>
+            <h3>Clase</h3>
+            <p>{{ getSelectedClassInfo()?.name }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item class="info-item">
+          <ion-label>
+            <h3>Asignatura</h3>
+            <p>{{ selectedSubject }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item class="info-item">
+          <ion-label>
+            <h3>Profesor</h3>
+            <p>{{ currentUser?.email }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item class="info-item">
+          <ion-label>
+            <h3>Fecha y Hora</h3>
+            <p>{{ currentDate }}</p>
+          </ion-label>
+        </ion-item>
+      </div>
+
+      <div class="qr-actions">
+        <ion-button expand="block" class="action-button" (click)="downloadQR()">
+          <ion-icon name="download-outline" slot="start"></ion-icon>
+          Descargar QR
+        </ion-button>
+
+        <ion-button expand="block" class="action-button secondary" (click)="clearQR()">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          Limpiar
+        </ion-button>
+
+        <ion-button expand="block" class="action-button primary" (click)="generateQRCode()">
+          <ion-icon name="refresh-outline" slot="start"></ion-icon>
+          Generar Nuevo Código QR
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Instrucciones -->
+  <ion-card class="instructions-card">
+    <ion-card-header>
+      <ion-card-title class="card-title">
+        <ion-icon name="information-circle-outline" class="title-icon"></ion-icon>
+        Instrucciones
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="1" slot="start" class="step-icon"></ion-icon>
+          <ion-label>
+            <h3>Selecciona la clase y asignatura</h3>
+            <p>Elige la materia correspondiente a tu clase actual</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="2" slot="start" class="step-icon"></ion-icon>
+          <ion-label>
+            <h3>Genera el código QR</h3>
+            <p>Haz clic en "Generar Código QR" para crear el código</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="3" slot="start" class="step-icon"></ion-icon>
+          <ion-label>
+            <h3>Muestra el QR a los estudiantes</h3>
+            <p>Proyecta el código QR en la pantalla del aula</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="4" slot="start" class="step-icon"></ion-icon>
+          <ion-label>
+            <h3>Los estudiantes escanean</h3>
+            <p>Los alumnos escanean el código con la app RegistrAPP</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

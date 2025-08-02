@@ -1,73 +1,221 @@
-#container {
+/* ===== HOME PAGE STYLES ===== */
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: var(--bg-gradient);
+}
+
+.welcome-section {
   text-align: center;
+  margin-bottom: 40px;
+  animation: fadeIn 1s ease-out;
+}
 
+.app-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  background: linear-gradient(45deg, var(--primary-pastel), var(--accent-pastel), var(--secondary-pastel));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+}
+
+.app-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.actions-section {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.action-button {
+  --border-radius: 16px;
+  --box-shadow: var(--shadow-light);
+  font-weight: 700;
+  font-size: 1.1rem;
+  height: 60px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-button::before {
+  content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.action-button:hover::before {
+  left: 100%;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-ion-content {
-  --background: #001f3f; /* Fondo azul marino */
-  color: white; /* Texto en blanco */
-}
-
-
-/* Animación para deslizar desde la izquierda */
-.animate-title {
-  display: inline-block; /* Necesario para la animación */
-  animation: slideInLeft 1s ease-out forwards;
-}
-
-.animate-title:nth-child(2) {
-  animation-delay: 0.2s; /* Retraso para "APP" */
-}
-
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
+/* Variantes de botones */
+.action-button.primary {
+  --background: linear-gradient(45deg, var(--primary-pastel), var(--info-pastel));
+  --color: var(--text-primary);
+  
+  &:hover {
+    --background: linear-gradient(45deg, var(--info-pastel), var(--primary-pastel));
+    transform: translateY(-5px);
+    --box-shadow: var(--shadow-medium);
   }
 }
 
-
-
-/*ANIMACIONES DE BOTONES*/
-
-/* Animación de entrada */
-.fade-in {
-  animation: fadeIn 1s ease forwards;
+.action-button.secondary {
+  --background: linear-gradient(45deg, var(--secondary-pastel), var(--warning-pastel));
+  --color: var(--text-primary);
+  
+  &:hover {
+    --background: linear-gradient(45deg, var(--warning-pastel), var(--secondary-pastel));
+    transform: translateY(-5px);
+    --box-shadow: var(--shadow-medium);
+  }
 }
 
-/* Definición de keyframes */
+.action-button.accent {
+  --background: linear-gradient(45deg, var(--accent-pastel), var(--danger-pastel));
+  --color: var(--text-primary);
+  
+  &:hover {
+    --background: linear-gradient(45deg, var(--danger-pastel), var(--accent-pastel));
+    transform: translateY(-5px);
+    --box-shadow: var(--shadow-medium);
+  }
+}
+
+.action-button.success {
+  --background: linear-gradient(45deg, var(--success-pastel), var(--primary-pastel));
+  --color: var(--text-primary);
+  
+  &:hover {
+    --background: linear-gradient(45deg, var(--primary-pastel), var(--success-pastel));
+    transform: translateY(-5px);
+    --box-shadow: var(--shadow-medium);
+  }
+}
+
+/* Iconos en los botones */
+.action-button ion-icon {
+  font-size: 1.4rem;
+  margin-right: 12px;
+}
+
+/* ===== ANIMATIONS ===== */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Animación escalonada para los botones */
+.action-button:nth-child(1) { animation: fadeIn 0.6s ease-out 0.3s both; }
+.action-button:nth-child(2) { animation: fadeIn 0.6s ease-out 0.4s both; }
+.action-button:nth-child(3) { animation: fadeIn 0.6s ease-out 0.5s both; }
+.action-button:nth-child(4) { animation: fadeIn 0.6s ease-out 0.6s both; }
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 15px;
+  }
+  
+  .app-title {
+    font-size: 2.8rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1rem;
+  }
+  
+  .action-button {
+    font-size: 1rem;
+    height: 55px;
+  }
+  
+  .actions-section {
+    max-width: 100%;
+  }
+}
+
+/* ===== FOCUS STATES ===== */
+
+.action-button:focus {
+  outline: 3px solid var(--primary-pastel);
+  outline-offset: 3px;
+}
+
+/* ===== DECORATIVE ELEMENTS ===== */
+
+.decorative-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--primary-pastel);
+  opacity: 0.1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.decorative-circle:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.decorative-circle:nth-child(2) {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  right: 15%;
+  background: var(--accent-pastel);
+  animation-delay: 2s;
+}
+
+.decorative-circle:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 20%;
+  background: var(--secondary-pastel);
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
 }

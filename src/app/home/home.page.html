@@ -1,12 +1,33 @@
-<ion-header [translucent]="true" style="background-color: #001f3f;"> <!-- Fondo azul marino -->
-  <ion-toolbar>
-    <ion-title>
-      <span class="animate-title" style="color: white; font-size: 24px;">Registr</span>
-      <span class="animate-title" style="color: gold; font-weight: bold; font-size: 28px;">APP</span> <!-- Texto "APP" dorado y más grande -->
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="home-container">
+  <div class="welcome-section">
+    <h1 class="app-title">RegistrAPP</h1>
+    <p class="app-subtitle">Sistema de Asistencia Universitaria</p>
+  </div>
 
-<ion-content style="background-color: #001f3f;"> <!-- Fondo azul marino -->
-  <app-login></app-login> <!-- Aquí se incluye el componente de login -->
-</ion-content>
+  <div class="actions-section">
+    <ion-button expand="block" class="action-button primary" (click)="goToLogin()">
+      <ion-icon name="log-in-outline" slot="start"></ion-icon>
+      Iniciar Sesión
+    </ion-button>
+
+    <ion-button expand="block" class="action-button secondary" (click)="goToRegister()">
+      <ion-icon name="person-add-outline" slot="start"></ion-icon>
+      Crear Cuenta
+    </ion-button>
+
+    <ion-button expand="block" class="action-button accent" (click)="goToRecoverPass()">
+      <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+      Recuperar Contraseña
+    </ion-button>
+
+    <ion-button expand="block" class="action-button success" (click)="goToInfo()">
+      <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+      Información
+    </ion-button>
+  </div>
+
+  <!-- Elementos decorativos -->
+  <div class="decorative-circle"></div>
+  <div class="decorative-circle"></div>
+  <div class="decorative-circle"></div>
+</div>

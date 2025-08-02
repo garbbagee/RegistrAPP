@@ -1,28 +1,51 @@
-<ion-header [translucent]="true" style="background-color: #001f3f;">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      <span style="color: white; font-size: 18px;">Sesión de </span>
-      <span style="color: gold; font-weight: bold; font-size: 24px;">{{ userEmail }}</span>
+      <ion-icon name="home-outline" style="margin-right: 8px;"></ion-icon>
+      Inicio Alumno
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="background-color: #001f3f; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; padding: 20px;">
-  <br><br><br><br><br><br><br><br>
-
-  <div class="texto-registr">
-    <span class="animar-registr" style="font-size: 44px;">Registr</span>
-    <span class="animar-app" style="font-size: 56px;">APP</span>
-  </div>
+<ion-content class="ion-padding">
   
-  <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-    <br><br><br><br>
+  <div class="alumno-container">
+    <div class="welcome-section">
+      <h1 class="welcome-title">¡Bienvenido!</h1>
+      <p class="welcome-subtitle">{{ userEmail }}</p>
+    </div>
 
-    <!-- Otros botones existentes -->
-    <ion-button class="bombeo" style="width: 80%;" (click)="scanQRCode()">Escanear QR</ion-button>
-    <ion-button class="bombeo" style="width: 80%;" (click)="myInfo()">Mi Información</ion-button>
-    <ion-button class="bombeo" style="width: 80%;" (click)="goToAsistencia()">Ir a Asistencia</ion-button> <!-- Nuevo botón -->
+    <div class="actions-section">
+      <ion-button expand="block" class="action-button primary" (click)="goToScan()">
+        <ion-icon name="qr-code-outline" slot="start"></ion-icon>
+        Escanear QR
+      </ion-button>
 
-    <ion-button class="bombeo" style="width: 80%;" (click)="logout()">Cerrar Sesión</ion-button>
+      <ion-button expand="block" class="action-button secondary" (click)="goToDashboard()">
+        <ion-icon name="analytics-outline" slot="start"></ion-icon>
+        Dashboard
+      </ion-button>
+
+      <ion-button expand="block" class="action-button tertiary" (click)="goToProfile()">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        Mi Información
+      </ion-button>
+
+      <ion-button expand="block" class="action-button quaternary" (click)="goToAttendance()">
+        <ion-icon name="list-outline" slot="start"></ion-icon>
+        Ir a Asistencia
+      </ion-button>
+
+      <ion-button expand="block" class="action-button danger" (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        Cerrar Sesión
+      </ion-button>
+    </div>
+
+    <!-- Elementos decorativos -->
+    <div class="decorative-circle"></div>
+    <div class="decorative-circle"></div>
+    <div class="decorative-circle"></div>
   </div>
+
 </ion-content>

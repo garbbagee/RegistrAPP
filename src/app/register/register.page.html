@@ -1,0 +1,101 @@
+<ion-header [translucent]="true" style="background-color: #001f3f;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: white;">
+      <ion-icon name="person-add-outline" style="margin-right: 8px;"></ion-icon>
+      Crear Cuenta
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="register-container">
+  <ion-card class="register-card">
+    <div class="register-header">
+      <ion-icon name="person-add-outline" class="register-icon"></ion-icon>
+      <h1 class="register-title">Crear Cuenta</h1>
+      <p class="register-subtitle">Únete a RegistrAPP</p>
+    </div>
+
+    <div class="register-content">
+      <form (ngSubmit)="register()" #registerForm="ngForm">
+        <ion-item class="form-item">
+          <ion-label position="floating">
+            <ion-icon name="mail-outline"></ion-icon>
+            Correo Electrónico
+          </ion-label>
+          <ion-input 
+            type="email" 
+            name="email" 
+            [(ngModel)]="email" 
+            required
+            autocomplete="email">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="form-item">
+          <ion-label position="floating">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            Contraseña
+          </ion-label>
+          <ion-input 
+            type="password" 
+            name="password" 
+            [(ngModel)]="password" 
+            required
+            autocomplete="new-password"
+            minlength="6">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="form-item">
+          <ion-label position="floating">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            Confirmar Contraseña
+          </ion-label>
+          <ion-input 
+            type="password" 
+            name="confirmPassword" 
+            [(ngModel)]="confirmPassword" 
+            required
+            autocomplete="new-password"
+            minlength="6">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="form-item">
+          <ion-label position="floating">
+            <ion-icon name="people-outline"></ion-icon>
+            Tipo de Usuario
+          </ion-label>
+          <ion-select [(ngModel)]="role" name="role" interface="popover">
+            <ion-select-option value="alumno">Estudiante</ion-select-option>
+            <ion-select-option value="profesor">Profesor</ion-select-option>
+          </ion-select>
+        </ion-item>
+        
+        <ion-button 
+          type="submit" 
+          expand="full" 
+          class="register-button"
+          [disabled]="isLoading">
+          <ion-icon name="person-add-outline" slot="start"></ion-icon>
+          {{ isLoading ? 'Creando...' : 'Crear Cuenta' }}
+        </ion-button>
+      </form>
+
+      <div class="divider">
+        <span>¿Ya tienes cuenta?</span>
+      </div>
+
+      <ion-button 
+        (click)="goToLogin()" 
+        expand="full" 
+        class="nav-button">
+        <ion-icon name="log-in-outline" slot="start"></ion-icon>
+        Ir al Login
+      </ion-button>
+    </div>
+  </ion-card>
+</div> 

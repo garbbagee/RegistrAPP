@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss']
 })
-export class LoginComponent {
+export class LoginPage {
   email: string = "";
   password: string = "";
   isLoading: boolean = false;
@@ -40,13 +40,15 @@ export class LoginComponent {
       if (result.user?.uid) {
         const userRole = await this.authService.getUserRole(result.user.uid);
         
+        // Mostrar alert de éxito primero
+        await this.showAlert('Éxito', 'Sesión iniciada correctamente');
+        
+        // Luego navegar según el rol
         if (userRole === 'profesor') {
           this.router.navigate(['/inicio']);
         } else {
           this.router.navigate(['/inicio-alumno']);
         }
-        
-        this.showAlert('Éxito', 'Sesión iniciada correctamente');
       }
     } catch (error: any) {
       console.error('Error en login:', error);
@@ -87,4 +89,4 @@ export class LoginComponent {
     });
     await alert.present();
   }
-}
+} 

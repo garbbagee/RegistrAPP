@@ -1,123 +1,240 @@
-.pumping {
-    animation: pump 0.5s infinite alternate;
+/* ===== INICIO ALUMNO PAGE STYLES ===== */
+
+.alumno-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: var(--bg-gradient);
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 20px;
+  background: var(--bg-card);
+  border-radius: 20px;
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--border-light);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.welcome-title {
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  background: linear-gradient(45deg, var(--primary-pastel), var(--accent-pastel));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+}
+
+.welcome-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.actions-section {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.action-button {
+  --border-radius: 16px;
+  --box-shadow: var(--shadow-light);
+  font-weight: 700;
+  font-size: 1.1rem;
+  height: 60px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.action-button:hover::before {
+  left: 100%;
+}
+
+/* Variantes de botones */
+.action-button.primary {
+  --background: linear-gradient(45deg, var(--primary-pastel), var(--info-pastel));
+  --color: var(--text-primary);
+  
+  &:hover {
+    --background: linear-gradient(45deg, var(--info-pastel), var(--primary-pastel));
+    transform: translateY(-5px);
+    --box-shadow: var(--shadow-medium);
+  }
+}
+
+.action-button.secondary {
+  --background: linear-gradient(45deg, var(--secondary-pastel), var(--warning-pastel));
+  --color: var(--text-primary);
+  
+  &:hover {
+    --background: linear-gradient(45deg, var(--warning-pastel), var(--secondary-pastel));
+    transform: translateY(-5px);
+    --box-shadow: var(--shadow-medium);
+  }
+}
+
+.action-button.tertiary {
+  --background: linear-gradient(45deg, var(--accent-pastel), var(--danger-pastel));
+  --color: var(--text-primary);
+  
+  &:hover {
+    --background: linear-gradient(45deg, var(--danger-pastel), var(--accent-pastel));
+    transform: translateY(-5px);
+    --box-shadow: var(--shadow-medium);
+  }
+}
+
+.action-button.quaternary {
+  --background: linear-gradient(45deg, var(--success-pastel), var(--primary-pastel));
+  --color: var(--text-primary);
+  
+  &:hover {
+    --background: linear-gradient(45deg, var(--primary-pastel), var(--success-pastel));
+    transform: translateY(-5px);
+    --box-shadow: var(--shadow-medium);
+  }
+}
+
+.action-button.danger {
+  --background: linear-gradient(45deg, var(--danger-pastel), #e74c3c);
+  --color: var(--text-white);
+  
+  &:hover {
+    --background: linear-gradient(45deg, #e74c3c, var(--danger-pastel));
+    transform: translateY(-5px);
+    --box-shadow: var(--shadow-medium);
+  }
+}
+
+/* Iconos en los botones */
+.action-button ion-icon {
+  font-size: 1.3rem;
+  margin-right: 10px;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Animación escalonada para los botones */
+.action-button:nth-child(1) { animation: fadeIn 0.6s ease-out 0.3s both; }
+.action-button:nth-child(2) { animation: fadeIn 0.6s ease-out 0.4s both; }
+.action-button:nth-child(3) { animation: fadeIn 0.6s ease-out 0.5s both; }
+.action-button:nth-child(4) { animation: fadeIn 0.6s ease-out 0.6s both; }
+.action-button:nth-child(5) { animation: fadeIn 0.6s ease-out 0.7s both; }
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 768px) {
+  .alumno-container {
+    padding: 15px;
   }
   
-  @keyframes pump {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.1);
-    }
+  .welcome-title {
+    font-size: 2rem;
   }
   
-  ion-title {
-    text-align: center; /* Centra el texto dentro del título */
-    width: 100%; /* Asegura que ocupe todo el ancho */
-    overflow: hidden; /* Evita que el contenido se desborde */
-    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
-    text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
+  .welcome-subtitle {
+    font-size: 1rem;
   }
   
-  
-  ion-content {
-    background-color: #001f3f;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end; /* Para centrar hacia abajo */
-    height: 100%;
-    padding: 20px;
+  .action-button {
+    font-size: 1rem;
+    height: 55px;
   }
   
-  .texto-registr {
-    text-align: center;
-    margin-bottom: 20px;
+  .actions-section {
+    max-width: 100%;
   }
-  
-  .texto-registr span:nth-child(1) {
-    color: white;
-    font-size: 24px;
-  }
-  
-  .texto-registr span:nth-child(2) {
-    color: gold;
-    font-weight: bold;
-    font-size: 28px;
-  }
-  
-  
-  @keyframes slideInLeft {
-    from {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  
-  
-  .texto-registr {
-    display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    margin-bottom: 28px;
-    width: 100%; /* Ocupará el 100% del ancho disponible */
-  }
-  
-  .texto-registr {
-    display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    margin-bottom: 28px; /* Margen inferior */
-  }
-  
-  .animar-registr {
-    color: white; /* Color de "Registr" */
-    font-size: 30px; /* Ajusta el tamaño según sea necesario */
-    animation: slideInLeft 0.5s forwards; /* Animación para "Registr" */
-    margin-right: 5px; /* Espacio entre "Registr" y "APP" */
-  }
-  
-  .animar-app {
-    color: gold; /* Color de "APP" */
-    font-weight: bold; /* Negrita para "APP" */
-    font-size: 34px; /* Ajusta el tamaño según sea necesario */
-    animation: slideInRight 0.5s forwards; /* Animación para "APP" */
-  }
-  
-  .bombeo {
-    animation: bombear 1s infinite alternate;
-  }
-  
-  @keyframes bombear {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.10); /* Aumenta el tamaño ligeramente */
-    }
-  }
-  
-  
-  ion-button {
-    width: 80%; /* Cambia el ancho según tu preferencia */
-    margin: 10px 0; /* Espacio entre los botones */
-    display: flex; /* Para centrar el contenido dentro del botón */
-    justify-content: center; /* Centrar el texto dentro del botón */
-  }
+}
+
+/* ===== FOCUS STATES ===== */
+
+.action-button:focus {
+  outline: 3px solid var(--primary-pastel);
+  outline-offset: 3px;
+}
+
+/* ===== DECORATIVE ELEMENTS ===== */
+
+.decorative-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--primary-pastel);
+  opacity: 0.1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.decorative-circle:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.decorative-circle:nth-child(2) {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  right: 15%;
+  background: var(--accent-pastel);
+  animation-delay: 2s;
+}
+
+.decorative-circle:nth-child(3) {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 20%;
+  background: var(--secondary-pastel);
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
   

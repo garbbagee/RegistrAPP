@@ -1,0 +1,311 @@
+// Fondo moderno
+ion-content {
+  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+// Cards generales
+ion-card {
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+// Header del usuario
+.user-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  ion-icon {
+    font-size: 2rem;
+    color: white;
+  }
+}
+
+.user-details {
+  h2 {
+    color: white;
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+  }
+}
+
+// Títulos de cards
+.card-title {
+  color: white;
+  font-weight: 700;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title-icon {
+  font-size: 1.5rem;
+  color: #ff6b6b;
+}
+
+// Estadísticas
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+  
+  &.success { color: #4ade80; }
+  &.warning { color: #fbbf24; }
+  &.danger { color: #f87171; }
+  &.primary { color: #60a5fa; }
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+// Alertas
+.alert-item {
+  --background: rgba(255, 255, 255, 0.1);
+  --border-radius: 15px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  &.success {
+    border-left: 4px solid #4ade80;
+  }
+  
+  &.warning {
+    border-left: 4px solid #fbbf24;
+  }
+  
+  &.danger {
+    border-left: 4px solid #f87171;
+  }
+  
+  &.info {
+    border-left: 4px solid #60a5fa;
+  }
+  
+  h3 {
+    color: white;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 5px 0 0 0;
+  }
+}
+
+// Rendimiento por clase
+.class-item {
+  --background: rgba(255, 255, 255, 0.1);
+  --border-radius: 15px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  h3 {
+    color: white;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 5px 0 0 0;
+  }
+}
+
+// Próximas clases
+.upcoming-item {
+  --background: rgba(255, 255, 255, 0.1);
+  --border-radius: 15px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  h3 {
+    color: white;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 5px 0 0 0;
+  }
+}
+
+// Gráfico semanal
+.weekly-chart {
+  margin-top: 15px;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  height: 150px;
+  gap: 10px;
+}
+
+.day-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.bar-label {
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.bar-container {
+  width: 100%;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.attendance-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, #4ade80, #22c55e);
+  border-radius: 10px;
+  transition: height 0.5s ease;
+  
+  &.attended {
+    background: linear-gradient(to top, #4ade80, #22c55e);
+  }
+  
+  &.missed {
+    background: linear-gradient(to top, #f87171, #ef4444);
+  }
+}
+
+.bar-value {
+  color: white;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+// Acciones rápidas
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.action-button {
+  --background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  --color: white;
+  --border-radius: 15px;
+  --box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+  font-weight: 700;
+  height: 50px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    --background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+    transform: translateY(-3px);
+    --box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-container {
+    height: 120px;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+}
+
+// Animaciones
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ion-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+ion-card:nth-child(2) { animation-delay: 0.1s; }
+ion-card:nth-child(3) { animation-delay: 0.2s; }
+ion-card:nth-child(4) { animation-delay: 0.3s; }
+ion-card:nth-child(5) { animation-delay: 0.4s; }
+ion-card:nth-child(6) { animation-delay: 0.5s; } 

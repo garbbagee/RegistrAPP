@@ -14,10 +14,12 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { HttpClientModule } from '@angular/common/http';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
-import { ConsumoApiPageModule } from './consumoapi/consumoapi.module'; 
+import { ConsumoApiPageModule } from './consumoapi/consumoapi.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

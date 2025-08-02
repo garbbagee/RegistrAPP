@@ -1,27 +1,90 @@
-<ion-content>
-  <!-- Video donde se muestra la cámara -->
-  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <video id="video" autoplay playsinline></video>
+<ion-header [translucent]="true" style="background-color: #001f3f;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio-alumno"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: white;">
+      <ion-icon name="qr-scanner-outline" style="margin-right: 8px;"></ion-icon>
+      Escanear Código QR
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="background-color: #001f3f;">
+  
+  <div class="scanner-container">
+    <div class="camera-container">
+      <video #video id="video" autoplay playsinline class="camera-video"></video>
+      
+      <!-- Overlay para el área de escaneo -->
+      <div class="scanner-overlay">
+        <div class="scanner-frame">
+          <div class="corner top-left"></div>
+          <div class="corner top-right"></div>
+          <div class="corner bottom-left"></div>
+          <div class="corner bottom-right"></div>
+        </div>
+      </div>
+      
+      <!-- Indicador de estado -->
+      <div class="status-indicator" *ngIf="isScanning">
+        <ion-icon name="scan-outline" class="scan-icon"></ion-icon>
+        <p>Escaneando código QR...</p>
+      </div>
+    </div>
   </div>
 
-  <!-- Mostrar el QR detectado -->
-  <div *ngIf="scannedData" class="qr-container">
-    <p class="qr-text">Código QR detectado: {{ scannedData }}</p>
-    <ion-button (click)="openLink(scannedData)" color="primary">Ir al enlace</ion-button>
-  </div>
+  <!-- Información y instrucciones -->
+  <ion-card class="info-card">
+    <ion-card-header>
+      <ion-card-title class="info-title">
+        <ion-icon name="information-circle-outline" class="title-icon"></ion-icon>
+        Instrucciones
+      </ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="checkmark-circle-outline" slot="start" color="success"></ion-icon>
+          <ion-label>
+            <h3>Posiciona el código QR</h3>
+            <p>Coloca el código QR dentro del marco de escaneo</p>
+          </ion-label>
+        </ion-item>
+        
+        <ion-item>
+          <ion-icon name="checkmark-circle-outline" slot="start" color="success"></ion-icon>
+          <ion-label>
+            <h3>Mantén estable</h3>
+            <p>Mantén el dispositivo estable para un escaneo exitoso</p>
+          </ion-label>
+        </ion-item>
+        
+        <ion-item>
+          <ion-icon name="checkmark-circle-outline" slot="start" color="success"></ion-icon>
+          <ion-label>
+            <h3>Confirma asistencia</h3>
+            <p>Confirma el registro de asistencia cuando se detecte</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
-  <!-- Botón para detener el escaneo si lo desea el usuario -->
-  <ion-button *ngIf="scannedData" (click)="stopCamera()" color="danger" expand="full">
-    Detener Escaneo
-  </ion-button>
+  <!-- Información del usuario -->
+  <ion-card class="user-card" *ngIf="currentUser">
+    <ion-card-content>
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>Alumno</h3>
+          <p>{{ currentUser.email }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-  <!-- Botón para iniciar el escaneo si no se ha escaneado ningún código -->
-  <ion-button *ngIf="!scannedData" (click)="startCamera()" color="primary" expand="full">
-    Iniciar Escaneo
-  </ion-button>
-
-  <!-- Botón para registrar asistencia después de escanear el QR -->
-  <ion-button *ngIf="scannedData" (click)="registerAttendance()" color="success" expand="full">
-    Registrar Asistencia
-  </ion-button>
 </ion-content>

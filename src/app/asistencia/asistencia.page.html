@@ -1,32 +1,123 @@
-<ion-header>
+<ion-header [translucent]="true" style="background-color: #001f3f;">
   <ion-toolbar>
-    <ion-title>Asistencia</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio-alumno"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: white;">
+      <ion-icon name="calendar-outline" style="margin-right: 8px;"></ion-icon>
+      Control de Asistencia
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <br><br><br><br><br><br><br><br><br><br>
-  <ion-list>
-    <br>
-    <ion-item>
-      <ion-label>Clases Totales</ion-label>
-      <ion-badge color="primary">{{ totalClasses }}</ion-badge>
-    </ion-item>
-    <br><br>
-    <ion-item>
-      <ion-label>Clases Asistidas</ion-label>
-      <ion-badge color="secondary">{{ attendedClasses }}</ion-badge>
-    </ion-item>
-    <br><br>
-    <ion-item>
-      <ion-label>Porcentaje Asistencia</ion-label>
-      <ion-badge color="tertiary">{{ attendancePercentage }}%</ion-badge>
-    </ion-item>
-    <br>
-  </ion-list>
+<ion-content style="background-color: #001f3f; padding: 20px;">
+  
+  <!-- Tarjeta principal de estadísticas -->
+  <ion-card class="stats-card">
+    <ion-card-header>
+      <ion-card-title class="card-title">
+        <ion-icon name="stats-chart-outline" class="title-icon"></ion-icon>
+        Resumen de Asistencia
+      </ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">{{ attendedClasses }}</div>
+          <div class="stat-label">Clases Asistidas</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-number">{{ totalClasses }}</div>
+          <div class="stat-label">Total de Clases</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-number">{{ totalClasses - attendedClasses }}</div>
+          <div class="stat-label">Clases Faltadas</div>
+        </div>
+      </div>
+      
+      <div class="percentage-container">
+        <div class="percentage-circle" [style.background]="getPercentageColor()">
+          <div class="percentage-text">{{ attendancePercentage }}%</div>
+        </div>
+        <div class="percentage-info">
+          <h3>Porcentaje de Asistencia</h3>
+          <p class="status-text">
+            <ion-icon [name]="getStatusIcon()" [color]="getStatusColor()"></ion-icon>
+            {{ getAttendanceStatus() }}
+          </p>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
-  <!-- Botón para volver al inicio del alumno -->
-  <ion-button (click)="goToInicioAlumno()" color="primary" expand="full">
-    Volver al Inicio
-  </ion-button>
+  <!-- Tarjeta de información del usuario -->
+  <ion-card class="user-card" *ngIf="currentUser">
+    <ion-card-content>
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>Alumno</h3>
+          <p>{{ currentUser.email }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Tarjeta de historial de asistencia -->
+  <ion-card class="history-card" *ngIf="attendanceHistory.length > 0">
+    <ion-card-header>
+      <ion-card-title class="card-title">
+        <ion-icon name="time-outline" class="title-icon"></ion-icon>
+        Historial de Asistencias
+      </ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let attendance of attendanceHistory" class="history-item">
+          <ion-icon name="checkmark-circle" slot="start" color="success"></ion-icon>
+          <ion-label>
+            <h3>Sesión {{ attendance.sessionId }}</h3>
+            <p>Profesor: {{ attendance.professorEmail }}</p>
+            <p class="date-text">{{ formatDate(attendance.scannedAt) }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Tarjeta de acciones -->
+  <ion-card class="actions-card">
+    <ion-card-content>
+      <div class="actions-grid">
+        <ion-button expand="block" (click)="scanNewQR()" class="action-button">
+          <ion-icon name="qr-scanner-outline" slot="start"></ion-icon>
+          Escanear Nuevo QR
+        </ion-button>
+        
+        <ion-button expand="block" (click)="goToInicioAlumno()" class="action-button" fill="outline">
+          <ion-icon name="home-outline" slot="start"></ion-icon>
+          Volver al Inicio
+        </ion-button>
+      </div>
+      
+      <!-- Botón de limpiar historial (solo para desarrollo) -->
+      <ion-button 
+        expand="block" 
+        (click)="clearHistory()" 
+        class="clear-button" 
+        fill="clear" 
+        color="danger">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Limpiar Historial
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

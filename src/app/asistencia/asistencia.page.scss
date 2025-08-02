@@ -1,0 +1,267 @@
+.stats-card, .user-card, .history-card, .actions-card {
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.card-title {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.title-icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  color: #ffd700;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffd700;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.percentage-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+}
+
+.percentage-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.percentage-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.percentage-info h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin: 0 0 10px 0;
+}
+
+.status-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.user-card ion-item {
+  --background: transparent;
+  --border: none;
+}
+
+.avatar-icon {
+  font-size: 2rem;
+  color: #ffd700;
+}
+
+.history-card ion-list {
+  background: transparent;
+}
+
+.history-item {
+  --background: rgba(255, 255, 255, 0.1);
+  --border-radius: 10px;
+  margin-bottom: 8px;
+  --color: white;
+  transition: all 0.3s ease;
+}
+
+.history-item:hover {
+  --background: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+}
+
+.history-item ion-label h3 {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.history-item ion-label p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin: 2px 0;
+}
+
+.date-text {
+  color: #ffd700 !important;
+  font-size: 0.8rem !important;
+  font-style: italic;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.action-button {
+  --border-radius: 25px;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  height: 45px;
+  transition: all 0.3s ease;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.clear-button {
+  --color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.clear-button:hover {
+  --color: #ff4444;
+}
+
+// Animaciones
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.stats-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.user-card {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.history-card {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.actions-card {
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .percentage-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+  
+  .title-icon {
+    font-size: 1.3rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}
+
+// Efectos de hover para los elementos interactivos
+ion-item:hover {
+  --background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+// Estilos para los iconos de estado
+ion-icon[color="success"] {
+  color: #4caf50 !important;
+}
+
+ion-icon[color="warning"] {
+  color: #ff9800 !important;
+}
+
+ion-icon[color="danger"] {
+  color: #f44336 !important;
+}
+
+// Mejoras en la accesibilidad
+ion-button:focus {
+  outline: 2px solid #ffd700;
+  outline-offset: 2px;
+}
+
+// Efectos de transición suaves
+* {
+  transition: all 0.3s ease;
+}

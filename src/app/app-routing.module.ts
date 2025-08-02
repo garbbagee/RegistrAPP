@@ -38,13 +38,27 @@ const routes: Routes = [
     loadChildren: () => import('./inicio-alumno/inicio-alumno.module').then( m => m.InicioAlumnoPageModule),
     canActivate:[authGuard]
 
-  },  {
+  },
+  {
     path: 'asistencia',
     loadChildren: () => import('./asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
   },
   {
     path: 'generate-qr',
     loadChildren: () => import('./generate-qr/generate-qr.module').then( m => m.GenerateQrPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    canActivate:[authGuard]
   },
 
 
